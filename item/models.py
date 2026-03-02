@@ -25,7 +25,7 @@ class item(models.Model):
     ## this is to upload the image of the item and store it in the 'item_images' folder in the media folder
     image= models.ImageField(upload_to='item_images/',blank=True, null=True)
     ## this is to create a foreign key relationship with the category model and delete the item if the category is deleted
-    category = models.ForeignKey(category, on_delete=models.CASCADE) 
+    category = models.ForeignKey(category,related_name="items" ,on_delete=models.CASCADE) 
     ## this is to store the status of the item whether it is sold or not, default is False
     is_sold = models.BooleanField(default=False) 
     ## this is to store the date and time when the item is created, it will be automatically set to the current date and time when the item is created

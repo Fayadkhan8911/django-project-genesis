@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.urls import path,include
 import core
 from core.views import index 
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
    
@@ -29,4 +31,4 @@ urlpatterns = [
     # path('', include('core.urls')), 
     
 
-]
+] +static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) ## this is to serve media files during development, it will serve media files from the MEDIA_URL and MEDIA_ROOT defined in the settings.py file    
