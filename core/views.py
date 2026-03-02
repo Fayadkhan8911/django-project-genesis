@@ -5,9 +5,11 @@ from django.template import loader
 from item.models import category,item
 
 def index(request):
-    items = item.objects.filter(is_sold=False).order_by('-created_at')[:10] ## this is to get the latest 10 items that are not sold and order them by created_at in descending orderc
+    items = item.objects.filter(is_sold=False).order_by('-created_at')[:6] ## this is to get the latest 10 items that are not sold and order them by created_at in descending orderc
     categories = category.objects.all() ## this is to get all the categories
-    return render(request,'core/index.html', {'items': items, 'categories': categories}) ## this is to render the index.html template and pass the items and categories to the template
+    return render(request,'core/index.html', {
+        'items': items, 
+        'categories': categories}) ## this is to render the index.html template and pass the items and categories to the template
 
 def contact(request):
     return render(request,'core/contact.html')
