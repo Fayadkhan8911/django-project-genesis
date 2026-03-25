@@ -15,20 +15,21 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path,include
+from django.urls import path,include 
 import core
-from core.views import index 
+from core.views import index
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-   
+    
+
     path('', index, name='index'), # home page
 
+    path('items/', include('item.urls')), # include the URLs from the item app, this will allow us to access the item detail view at /item/<pk>/
     path('contact/', core.views.contact, name='contact'), # contact page
-
     path('admin/', admin.site.urls),
-    # path('', include('core.urls')), 
+        
     
 
 ] +static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) ## this is to serve media files during development, it will serve media files from the MEDIA_URL and MEDIA_ROOT defined in the settings.py file    
