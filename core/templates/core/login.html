@@ -1,0 +1,46 @@
+{% extends "core/base.html" %}
+
+{% block title %}Genesis Core - Log In{% endblock title %}
+
+{% block content %}
+<div class="max-w-md mx-auto mt-10 p-8 bg-white rounded-lg shadow-lg">
+    <h1 class="text-2xl font-bold mb-8 text-center text-gray-800">Log In to Your Account</h1>
+    
+    <form method="post" action="." class="space-y-6">
+        {% csrf_token %}
+        
+        {% if form.non_field_errors %}
+            <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded mb-4">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+        
+        <!-- Username -->
+        <div class="space-y-2 bg-blue-50 p-4 rounded-lg">
+            <label for="{{ form.username.id_for_label }}" class="block text-sm font-medium text-gray-700">
+                {{ form.username.label }}
+            </label>
+            {{ form.username }}
+            {% if form.username.errors %}
+                <p class="text-red-600 text-sm">{{ form.username.errors.0 }}</p>
+            {% endif %}
+        </div>
+        
+        <!-- Password -->
+        <div class="space-y-2 bg-yellow-50 p-4 rounded-lg">
+            <label for="{{ form.password.id_for_label }}" class="block text-sm font-medium text-gray-700">
+                Password
+            </label>
+            {{ form.password }}
+            {% if form.password.errors %}
+                <p class="text-red-600 text-sm">{{ form.password.errors.0 }}</p>
+            {% endif %}
+        </div>
+        
+        <button type="submit" class="w-full bg-teal-500 text-white py-3 px-4 rounded-lg hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 transition duration-200">
+            Log In
+        </button>
+    </form>
+    
+</div>
+{% endblock %}

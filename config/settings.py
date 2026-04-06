@@ -28,7 +28,9 @@ DEBUG = True
 # ALLOWED_HOSTS = ['yourdomain.com', 'localhost', '127.0.0.1']
 ALLOWED_HOSTS = []
 
-
+LOGIN_URL='/login/' ## this is to tell Django where to redirect the user when they try to access a page that requires authentication and they are not logged in, it will redirect them to the login page at /login/
+LOGIN_REDIRECT_URL='/' ## this is to tell Django where to redirect the user after they have successfully logged in, it will redirect them to the home page at /
+LOGOUT_REDIRECT_URL='/' ## this is to tell Django where to redirect the user after they have successfully logged out, it will redirect them to the home page at /
 # Application definition
 
 INSTALLED_APPS = [

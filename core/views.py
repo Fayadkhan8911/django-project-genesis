@@ -1,5 +1,5 @@
 from urllib import request
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.template import loader
 from item.models import category,item
@@ -16,9 +16,21 @@ def contact(request):
     return render(request,'core/contact.html')
 
 def signup(request):
-    form= signupform()
-    return render(request,'core/signup.html', 
-                  {'form': form})
+    if request.method == 'POST':
+        form = signupform(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('core:core') ## this is to redirect the user to the home page after successful signup, you can change it to any page you want
+    else:   
+        form = signupform() ## this is to create an instance of the signupform to pass it to the template
+    return render(request,'core/signup.html', {
+        'form': form}) ## this is to render the signup.html template and pass the form to the template, the form will be used to display the form fields in the template and handle the
+    
+def login(request):
+    return render(request,'core/login.html') ## this is to render the login.html template, we will use the built-in LoginView from django.contrib.auth.views to handle the login functionality, we will pass the loginform as the authentication_form to the LoginView in the urls.py file
+
+def logout(request):
+    return render(request,'core/logout.html') ## this is to render the logout.html template, we will use the built-in LogoutView from django.contrib.auth.views to handle the logout functionality, we will pass the logout.html template to the LogoutView in the urls.py file
 
 # Create your views here.
 
