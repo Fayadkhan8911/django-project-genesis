@@ -25,8 +25,7 @@ urlpatterns = [
     
 
     path('', index, name='index'), # home page
-
-    path('items/', include('item.urls')), # include the URLs from the item app, this will allow us to access the item detail view at /item/<pk>/
+    path('item/', include('item.urls')), # include the URLs from the item app, this will allow us to access the item detail view at /item/<pk>/
     path('contact/', core.views.contact, name='contact'), # contact page
     path('admin/', admin.site.urls),
         
