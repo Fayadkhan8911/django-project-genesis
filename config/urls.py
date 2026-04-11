@@ -28,6 +28,7 @@ urlpatterns = [
     path('item/', include('item.urls')), # include the URLs from the item app, this will allow us to access the item detail view at /item/<pk>/
     # path('contact/', include('core.urls')), # contact page
     path('admin/', admin.site.urls),
+    path('dashboard/', include('dashboard.urls')), ## this is to include the URLs from the dashboard app, this will allow us to access the dashboard view at /dashboard/
         
     
 

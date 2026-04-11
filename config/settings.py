@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',     ## this is the app that we created for the core functionalities of the project
     'item',     ## this is the app that we created for the items
+    'dashboard', ## this is the app that we created for the dashboard
 ]
 
 MIDDLEWARE = [
