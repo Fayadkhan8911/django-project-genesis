@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render, get_object_or_404
 from item.models import item 
 from django.contrib.auth.decorators import login_required
 
@@ -9,3 +9,4 @@ def dashboard(request):
     items = item.objects.filter(created_by=request.user) ## this is to get the items created by the logged in user
     return render(request, 'dashboard/dashboard.html', 
                   {'items': items}) ## this is to render the dashboard.html template and pass the items to the template
+

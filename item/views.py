@@ -33,3 +33,9 @@ def new(request):
 
         form=itemform() ## this is to create an instance of the NewItemForm to pass it to the template, the form will be used to display the form fields in the template and     handle the form submission
     return render(request,'item/form.html', {'form': form,'title': 'New Item'}) ## this is to render the form.html template and pass the form and title to
+
+@login_required
+def delete_item(request, pk):
+    item = get_object_or_404(Item, pk=pk, created_by=request.user) ## this is to get the item with the given pk and created by the logged in user, if the item does not exist it will return a 404 error
+    item.delete() ## this is to delete the item
+    return redirect('dashboard:dashboard') ## this is to redirect the user to the dashboard after
